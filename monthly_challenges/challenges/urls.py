@@ -4,7 +4,8 @@ from . import views
 
 urlpatterns = [
     # string describe URL we wanna supoort // pointer at the view function that should be executed // 
-    path("january", views.january),
-    path("february", views.february),
-    path("march", views.march),
+    path("<int:month>", views.monthly_challenges_by_number),
+    path("<str:month>", views.monthly_challenges),
+    
+
 ]
