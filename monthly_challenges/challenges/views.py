@@ -10,25 +10,28 @@ from django.http import HttpResponse, HttpResponseNotFound
     ## so to the browser, sending that request.
     #return HttpResponse("January no meat for the enire month!")
 
+monthly_challenges = {
+    "january": "January no meat for the entire month!",
+    "february": "in February walk for at least 20 minutes every day!",
+    "march": "March: Learn Django for at least 20 minutes every day!",
+    "june": "January no meat for the entire month!",
+    "july": "in February walk for at least 20 minutes every day!",
+    "august": "Learn Django for at least 20 minutes every day!",
+    "september": "no meat for the entire month!",
+    "october": "walk for at least 20 minutes every day!",
+    "november": "Learn Django for at least 20 minutes every day!",
+    "dicember": "no meat for the entire month!",
+}
 
 
-def monthly_challenges(request, month):
+def monthly_challenge(request, month):
+    try:
+        challenge_text = monthly_challenges[month]
+        return HttpResponse(challenge_text)
+    except:
+        return HttpResponseNotFound("This month is not supported")
 
-    challenge_text = None
-
-    if month == 'january':
-        challenge_text = "January no meat for the entire month!"
-
-    elif month == "february":
-        challenge_text = "in February walk for at least 20 minutes every day!"
-
-    elif month == "march":
-        challenge_text = "March: Learn Django for at least 20 minutes every day!"
-    else:
-        return HttpResponseNotFound("This month is not supported!")
-
-    return HttpResponse(challenge_text)
-
+    
 
 def monthly_challenges_by_number(request, month):
     return HttpResponse(month)
